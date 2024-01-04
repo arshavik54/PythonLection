@@ -63,7 +63,6 @@ def copy_contact(contacts_list):
     contacts_list = file.read().rstrip().split('\n\n')
     for nn, contact in enumerate(contacts_list, 1):
         print(nn, contact)
-    
     with shutil.copy('phonebook.txt', 'r',encoding = 'UTF-8') as file:
          file.read(contacts_list)
     
