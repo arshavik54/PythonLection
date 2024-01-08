@@ -59,12 +59,19 @@ def add_contact(contact):
     with open('phonebook.txt', 'a', encoding='UTF-8') as file:
         file.write(contact)
 
-def copy_contact(contacts_list):
-    contacts_list = file.read().rstrip().split('\n\n')
-    for nn, contact in enumerate(contacts_list, 1):
-        print(nn, contact)
-    with shutil.copy('phonebook.txt', 'r',encoding = 'UTF-8') as file:
-         file.read(contacts_list)
+def copy_contact():
+   
+    with open('phonebook.txt', 'r', encoding='UTF-8') as file:
+        contacts_list = file.read().rstrip().split('\n\n')
+        for nn, contact in enumerate(contacts_list, 1):
+            print(nn,contact, '\n')
+        num_copy = int(input('Выберите номер контакта, который хотите скопировать: '))
+        index_contact = num_copy - 1
+        
+    with open('copy_phonebook.txt', 'a', encoding='UTF-8') as file:
+        file.write(f'{contacts_list[index_contact]}\n\n')
+    # with shutil.copy('phonebook.txt', 'r',encoding = 'UTF-8') as file:
+    #      file.read(contacts_list)
     
 
 def show_info():
@@ -84,7 +91,7 @@ def search_contact():
         '4. По номеру телефона\n'
         '5. По адресу\n'
     )
-    var_search = input('Выберите вариант поиска: ')
+    var_search = input('Выберите вариант поиска: \n')
 
     while var_search not in ('1', '2', '3', '4', '5'):
         print('Некорректные данные, нужно ввести число комманды')
@@ -106,13 +113,13 @@ def interface():
     with open('phonebook.txt', 'a', encoding='UTF-8'):
         pass
     command = '-1'
-    while command != '5':
+    while command != '5' and '2':
         print('Возможные варианты взаимодействия:\n'
               '1. Добавить контакт\n'
               '2. Скопировать контакт\n'
               '3. Вывести на экран\n'
               '4. Поиск контакта\n'
-              '5. Выход из программы')
+              '5. Выход из программы\n')
 
         command = input('Введите номер действия: ')
 
